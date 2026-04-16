@@ -1,0 +1,7 @@
+{
+  "port": 5555,
+  "database": {
+    "type": "h2:mem",
+    "name": "mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:schema.sql'"
+  }
+}

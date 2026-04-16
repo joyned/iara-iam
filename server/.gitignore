@@ -1,0 +1,8 @@
+.DS_Store
+.lein-failures
+target/*
+
+.lsp
+.clj-kondo
+
+target
