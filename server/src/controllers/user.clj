@@ -7,3 +7,8 @@
 (s/defn find-all :- [domain.model.user/User]
   [db]
   (port.database.user/find-all db))
+
+(s/defn create-user :- domain.model.user/User
+  [data :- domain.model.user/User
+   db]
+  (port.database.user/create-user data db))

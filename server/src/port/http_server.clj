@@ -12,6 +12,13 @@
     {:status 200
      :body users}))
 
+(defn create-user [{:keys [components json-params]}]
+  (let [user (-> (adapters.user/request->model json-params)
+                 (controllers.user/create-user (:db components))
+                 (adapters.user/model->dto))]
+    {:status 201
+     :body user}))
+
 (defn health-check [{components :components}]
   (let [result (controllers.health-check/health-check (:db components))]
     (if (:healthy result)
@@ -26,7 +33,10 @@
      :route-name :health-check]
     ["/api/v1/user" :get (conj (common-interceptors components)
                                find-all-users)
-     :route-name :find-all-users]})
+     :route-name :find-all-users]
+    ["/api/v1/user" :post (conj (common-interceptors components)
+                                create-user)
+     :route-name :create-user]})
 
 (defn server-routers [components]
   (route/expand-routes (routes components)))

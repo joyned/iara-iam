@@ -22,3 +22,21 @@
    :full-name full-name
    :picture picture
    :is-blocked is-blocked})
+
+(s/defn request->model :- domain.model.user/User
+  [{:keys [email full-name password]} :- domain.model.user/User]
+  {:id (random-uuid)
+   :email email
+   :full-name full-name
+   :password password
+   :is-blocked false})
+
+(s/defn model->database :- domain.entity.user/User
+  [{:keys [id email full-name password picture otp-key is-blocked]} :- domain.model.user/User]
+  {:user/id id
+   :user/email email
+   :user/full-name full-name
+   :user/password password
+   :user/picture picture
+   :user/otp-key otp-key
+   :user/is-blocked is-blocked})
