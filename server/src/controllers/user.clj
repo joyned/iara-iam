@@ -1,5 +1,9 @@
 (ns controllers.user
-  (:require [port.database.user :as database.user]))
+  (:require
+   [domain.model.user]
+   [port.database.user]
+   [schema.core :as s]))
 
-(defn find-all [db]
-  (database.user/find-all db))
+(s/defn find-all :- [domain.model.user/User]
+  [db]
+  (port.database.user/find-all db))

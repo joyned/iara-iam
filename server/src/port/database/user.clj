@@ -1,5 +1,10 @@
 (ns port.database.user
-  (:require [next.jdbc :as jdbc]))
+  (:require
+   [adapters.user]
+   [domain.model.user]
+   [next.jdbc :as jdbc]
+   [schema.core :as s]))
 
-(defn find-all [db]
-  (jdbc/execute! db ["SELECT * FROM iam.\"user\""]))
+(s/defn find-all :- [domain.model.user/User]
+  [db]
+  (mapv adapters.user/database->model (jdbc/execute! db ["select * from iam.\"user\""])))

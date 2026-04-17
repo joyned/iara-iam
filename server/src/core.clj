@@ -1,8 +1,11 @@
 (ns core
   (:require [com.stuartsierra.component :as component]
-            [components.server :as s]
+            [components.server :as server]
             [components.database :as db]
-            [config]))
+            [config]
+            [schema.core :as schema]))
+
+(schema/set-fn-validation! true)
 
 (defn system []
   (let [config-data config/load-config
@@ -12,7 +15,7 @@
      :config config-data
      :db db-component
      :app (component/using
-           (s/map->Server {:components {}})
+           (server/map->Server {:components {}})
            {:config :config
             :db-conn :db}))))
 
@@ -24,7 +27,7 @@
      :config config-data
      :db db-component
      :app (component/using
-           (s/map->Server {})
+           (server/map->Server {})
            {:config :config
             :db-conn :db}))))
 

@@ -5,6 +5,9 @@
 
 (deftest user-fetch-test
   (with-test-server-auto
-    (let [response (http-request-auto :get "/api/v1/user")]
+    (let [response (http-request-auto :get "/api/v1/user")
+          user (first (:body response))]
       (is (= 200 (:status response)))
-      (is (= "clark.kent@dailyplanet.com" (:EMAIL (first (:body response))))))))
+      (is (= "luke.skywalker@rebeliao.com" (:email user)))
+      (is (= nil (:password user)))
+      (is (= nil (:otp-key user))))))

@@ -1,14 +1,14 @@
-CREATE SCHEMA IF NOT EXISTS iam;
+create schema if not exists iam;
 
 create table if not exists iam."user" (
-	id uuid,
-	email varchar,
-	full_name varchar,
-	picture text,
-	password varchar,
-	is_blocked bool default false,	
-	constraint user_pk primary key (id)
+	id uuid primary key,
+	email varchar not null,
+	full_name varchar not null,
+	password varchar not null,
+	picture varchar,
+	otp_key varchar,
+	is_blocked bool default false
 );
 
-MERGE INTO iam."user" (id, email, full_name, picture, password, is_blocked) VALUES
-('11111111-1111-1111-1111-111111111111', 'clark.kent@dailyplanet.com', 'Clark Kent', 'https://example.com/avatars/superman.jpg', '$2a$10$encrypted_password_hash_superman', false);
+merge into iam."user" (id, email, full_name, password, picture, otp_key, is_blocked) values
+(RANDOM_UUID(), 'luke.skywalker@rebeliao.com', 'Luke Skywalker', '$2a$10$N9qo8uLOickgx2ZMRZoMy.Mr5vYhC5yZ5J5a5J5a5J5a5J5a5J5a5', 'https://avatar.com/luke.jpg', 'JBSWY3DPEHPK3PXP', false);
