@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #0066cc;
+  --primary-dark: #0052a3;
+
+  --success: #52a832;
+  --warning: #f4c145;
+  --danger: #c9190b;
+
+  --background: #f5f5f5;
+  --sidebar: #212327;
+
+  --text-color: #d1d5dc;
+
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+.bg-sidebar {
+  background-color: var(--sidebar);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.border-primary {
+  border-color: var(--primary);
+}
+
+input {
+  outline: none;
+}
