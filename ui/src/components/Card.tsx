@@ -6,6 +6,6 @@ interface Props {
 
 export default function Card(props: Props) {
   return (
-    <div className="bg-white border-black/10 border p-5 rounded">{props.children}</div>
+    <div className="bg-white border-black/10 border p-5 rounded-lg">{props.children}</div>
   );
 }

@@ -1,22 +1,24 @@
 import { StatusEnum } from "../models/StatusEnum";
 
 interface Props {
-  status: "ACTIVE" | "INACTIVE";
+  status: StatusEnum;
 }
 
 export default function Status(props: Props) {
-  const value = StatusEnum[props.status];
-
   const variant = () => {
     switch (props.status) {
-      case "ACTIVE":
+      case StatusEnum.ACTIVE:
         return "bg-green-600 text-white";
-      case "INACTIVE":
+      case StatusEnum.INACTIVE:
         return "bg-gray-200 font-bold";
       default:
         return "";
     }
   };
 
-  return <div className={`text-xs flex w-fit p-1 rounded-lg ${variant()}`}>{value}</div>;
+  return (
+    <div className={`text-sm flex w-fit p-1 px-2 rounded-lg ${variant()}`}>
+      {props.status}
+    </div>
+  );
 }

@@ -7,7 +7,7 @@ interface Props {
 
 function Table(props: Props) {
   return (
-    <div className="bg-white border-black/10 border rounded">
+    <div className="bg-white border-black/10 border rounded-lg">
       <table className="w-full">
         <thead>
           <tr>
@@ -27,11 +27,11 @@ function Table(props: Props) {
 }
 
 function TableRow({ children }: any) {
-  return <tr className="p-5">{children}</tr>;
+  return <tr className="p-5 hover:bg-black/5 transition-all duration-300">{children}</tr>;
 }
 
 function TableData({ children, className }: any) {
-  const combinedClasses = `p-5 text-black/70 ${className}`;
+  const combinedClasses = `p-5 text-black/70 border-b border-black/5 ${className}`;
   return <td className={combinedClasses}>{children}</td>;
 }
 
