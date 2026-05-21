@@ -1,7 +1,8 @@
 import { FaPlus } from "react-icons/fa";
-import { SlidePanel } from "../../components/SlidePanel";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
+import { SlidePanel } from "../../components/SlidePanel";
+import TextArea from "../../components/TextArea";
 import { StatusEnum } from "../../models/StatusEnum";
 
 interface Props {
@@ -106,6 +107,7 @@ export default function UserForm(props: Props) {
           <span className="font-bold text-black/70 border-b border-black/10 pb-2">
             Metadata
           </span>
+          <TextArea rows={5} />
         </div>
       </form>
     </SlidePanel>
