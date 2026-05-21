@@ -18,6 +18,10 @@
   font-size: 14px;
 }
 
+.bg-background {
+  background-color: var(--background);
+}
+
 .bg-sidebar {
   background-color: var(--sidebar);
 }
@@ -32,4 +36,8 @@
 
 input {
   outline: none;
+}
+
+label {
+  color: #7c838f;
 }

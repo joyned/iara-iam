@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiFilter } from "react-icons/ci";
 import { FaUserPlus } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -16,13 +16,27 @@ import Status from "../../components/Status";
 import { Table, TableData, TableRow } from "../../components/Table";
 import type { User } from "../../models/User";
 import { UserService } from "../../service/UserService";
+import UserForm from "./UserForm";
 
 export default function UserPage() {
   const [users, setUsers] = useState<User[]>([]);
+  const [selectedUserId, setSelectedUserId] = useState<string | undefined>();
+
+  const slidePanelRef = useRef<any>(null);
 
   useEffect(() => {
     UserService.getUsers().then((users: User[]) => setUsers(users));
   }, []);
+
+  const addUser = () => {
+    setSelectedUserId(undefined);
+    slidePanelRef.current.setState(true);
+  };
+
+  const onEdit = (id?: string) => {
+    setSelectedUserId(id);
+    slidePanelRef.current.setState(true);
+  };
 
   return (
     <PageContent>
@@ -31,6 +45,7 @@ export default function UserPage() {
         subtitle="Manage user accounts and permissions"
         buttonLabel="Add Users"
         buttonIcon={<FaUserPlus />}
+        buttonAction={addUser}
       />
       <PageBody>
         <Card>
@@ -59,7 +74,7 @@ export default function UserPage() {
                 <TableData>
                   <div className="flex gap-2 items-center">
                     <Icon>
-                      <HiOutlinePencil />
+                      <HiOutlinePencil onClick={() => onEdit(user.id)} />
                     </Icon>
                     <Icon variant="DANGER">
                       <FaRegTrashCan />
@@ -71,6 +86,8 @@ export default function UserPage() {
           })}
         </Table>
       </PageBody>
+
+      <UserForm id={selectedUserId} slidePanelRef={slidePanelRef} />
     </PageContent>
   );
 }
