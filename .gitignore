@@ -6,3 +6,5 @@ target/*
 .clj-kondo
 
 target/*
+
+package-lock.json
